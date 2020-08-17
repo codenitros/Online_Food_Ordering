@@ -77,12 +77,13 @@ WSGI_APPLICATION = 'dbms.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
+# set the credentials for MySql Database
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'thindi',
-        'USER': 'santosh',
-        'PASSWORD': 'mysql7856',
+        'NAME': '',
+        'USER': '',
+        'PASSWORD': '',
         'HOST': '',
         'PORT': '',
     }
