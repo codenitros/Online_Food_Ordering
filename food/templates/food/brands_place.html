@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+
+
+    <script type="text/javascript">  //to scroll to results
+
+    $(document).ready(function () {
+        // Handler for .ready() called.
+        $('html, body').animate({
+            scrollTop: $('#scroll').offset().top
+        }, 3000);
+    });
+    </script>
+
+    <script>
+    function scrollWin() {
+      window.scrollTo(0, 500);
+    }
+    </script>
+{% endblock %}
+
+{% block body %}
+
+    <div class="box">
+        <h1>Hungry ? </h1>
+        <h4>Order food Online !</h4>
+        <h4>Explore the best Restaurants in Your City</h4>
+        <div class="arrow bounce">
+            <i id="scroll_down" class="fas fa-arrow-down" onclick="scrollWin()"></i>
+        </div>
+    </div>
+
+
+    <div class="content container" id="scroll">
+        <h3>Brands in place</h3>
+         <hr>
+            <br><br>
+            <div class="row">
+            {% for restaurant in place_resto %}
+                    <div class="col-md-3.5 pr-4">
+                        <a href="/menu/{{ restaurant.id }}">
+                        <div class="post">
+                            <img src="{{restaurant.image.url}}" alt="chapathi" width="330px" height="220px" />
+                            <h2 class="title"><a href="">{{ restaurant.name }}</a></h2>
+                            <h5 class="post-text" >{{ restaurant.phone}}</h5>
+                            <h5 class="post-text">{{ restaurant.address }}</h5>
+                            <span><i class="fas fa-thumbs-up">  {{ restaurant.rating}} </i></span>
+                            <br>
+                        </div>
+                        </a>
+                    </div>
+            {% endfor %}
+            </div>
+
+    </div>
+{% endblock %}

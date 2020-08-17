@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+    <script>
+    function scrollWin() {
+      window.scrollTo(0, 200);
+    }
+
+    </script>
+{% endblock %}
+
+
+{% block body %}
+
+
+<div class="box-blue">
+    <i class="fas fa-heart"></i>
+    {% for i in res_details %}
+    <p><img src="{{ i.image.url }} " alt="WebP rules." width="280px" height="180px" />
+    <h1>{{i.name}} </h1>
+        {% if offer_price %}
+            <h3>{{ offer_price.value }}% off on all recipes  </h3>
+        {% endif %}
+        <br><br>
+    <h5 style="color: white;padding-left: 50px">{{i.address}}  | {{i.rating}} <i class="fas fa-star"></i></h5>
+
+    {% endfor %}
+    <div class="menu arrow bounce">
+            <i id="scroll_down" class="fas fa-arrow-down" onclick="scrollWin()"></i>
+    </div>
+
+</div>
+
+<div class="container-special">
+    <div class="food" id="content">
+            <div class="row" >
+                {% for recipe in recipe_details %}
+                    <div class="col-md-3.5 pr-4">
+                        <div class="post">
+							<img src="{{ recipe.recipe_image.url }}" alt="chapati"  />
+                            <h2 class="title"><a href="">{{ recipe.recipe_name }}</a></h2>
+                            <h5 class="post-text" >{{ recipe.recipe_description }} </h5>
+                            <form action="{% url "cart:cart_add" recipe.id %}" method="post" class="button">
+
+                                {% csrf_token %}
+                                <button type="submit">
+                                    <i class="fa fa-plus-circle" aria-hidden="true" type="submit"></i>
+                                </button>
+                            </form>
+                            <form action="{% url "cart:cart_remove" recipe.id %}" method="post" class="button">
+                                {% csrf_token %}
+                                <button type="submit">
+                                    <i class="fa fa-minus-circle" aria-hidden="true" type="submit"></i>
+                                </button>
+                            </form>
+                            <h5 class="post-text">₹ {{ recipe.recipe_price }} </h5>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+    </div>   
+
+    <div class="sidebar">
+        <h1>Cart</h1>
+        <hr style="border: 0;width: 96%;color: black;height: 1px;">
+        <div class="items">
+            {% if cart.get_total_price != 0 %}
+                <ul class="cart_items">
+                    {% for item in cart %}
+                        {% with recipe=item.recipe %}
+                            <li>
+                                <p>{{ item.name }}</p>
+                                <p class="num">₹ {{ item.price }}</p>
+                                <p><a href="{% url "cart:cart_remove" recipe.id %}">Remove</a></p>
+                            </li>
+                        {% endwith %}
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>Your Cart is empty .</p>
+                <p>Good food is always cooking go <a href="{% url 'food:res_list' %}"> explore</a></p>
+            {% endif %}
+                <hr>
+        </div>
+        <br>
+        {% if cart.get_total_price != 0 %}
+            <h5><p class="price-total" >subtotal {{ total }}</p></h5>
+            <p class="post-text" >**Extra charges may apply</p>
+            <a href="/cart/checkout"> <button class="btn btn-success"> CHECKOUT</button></a>
+        {% endif %}
+    </div>     
+</div>
+
+
+
+
+{% endblock %}

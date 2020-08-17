@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block head %}
+    <script>
+    function scrollWin() {
+      window.scrollTo(0, 500);
+    }
+    </script>
+{% endblock %}
+
+{% block body %}
+
+    <div class="box">
+        <h1>Hungry ? </h1>
+        <h4>Order food Online !</h4>
+        <h4>Explore the best Restaurants in Your City</h4>
+        <div class="arrow bounce">
+            <i id="scroll_down" class="fas fa-arrow-down" onclick="scrollWin()"></i>
+        </div>
+    </div>
+
+
+
+    <div class="content container">
+            <div class="row">
+            {% for offer in my_offers %}
+                    <div class="col-md-3.5 pr-4">
+                        <a href="/menu/{{ offer.name }}">
+                            <div class="post">
+                                <img src="{{offer.name.image.url}}" alt="chapathi" width="330px" height="220px" />
+                                <h2 class="title"><a href="/menu/{{ offer.name.id }}">{{ offer.name }}</a></h2>
+                                <h5><p class="post-text" >{{ offer.value}} %</p></h5>
+                                <h5><p class="post-text">{{ offer.name.address }}</p></h5>
+                                <span><i class="far fa-grin-stars"> {{ offer.name.rating}} </i></span>
+                                <br>
+                            </div>
+                        </a>
+                    </div>
+            {% endfor %}
+            </div>
+     </div>
+{% endblock %}

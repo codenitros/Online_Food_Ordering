@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block body %}
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <form class="search-bar" method="GET" action="{% url 'food:search' %}">
+
+        <input class = "bar" type="text" name='q' placeholder="Enter restaurant name" value="{{ request.GET.q }}">
+        <button class="search-btn" type="submit" ><i class="fa fa-search" aria-hidden="true"></i></button>
+    </form>
+
+    <div class="content container">
+             {%  if favourites %}
+            <h1>Favourite Restaurants</h1>
+            <br><br>
+            <div class="row">
+            {% for restaurant in favourites %}
+                    <div class="col-md-3.5 pr-4">
+                        <a href="/menu/{{ restaurant.res_name.name }}">
+                            <div class="post">
+                                <img src="{{restaurant.res_name.image.url}}" alt="chapathi" width="330px" height="220px" />
+                                <h2 class="title"><a href="">{{ restaurant.res_name.name }}</a></h2>
+                                <h5><p class="post-text" >contact -{{ restaurant.res_name.phone}}</p></h5>
+                                <h5><p class="post-text">location -{{ restaurant.res_name.address }}</p></h5>
+                                <span><i class="far fa-grin-stars"> {{ restaurant.res_name.rating}} </i></span>
+                                <form action="{% url 'food:fav_del' restaurant.res_name.name %}" method="post" class="button">
+                                    {% csrf_token %}
+                                    <button type="submit">
+                                        <i class="fas fa-heart" style="color:red;border: none;" type="submit" name="fav"></i>
+                                    </button>
+                                </form>
+                                <br>
+                            </div>
+                        </a>
+                    </div>
+            {% endfor %}
+
+
+            </div>
+{% endif %}
+
+
+            <h1>Restaurants</h1>
+            <br><br>
+            <div class="row">
+            {% for restaurant in restaurants %}
+
+                    <div class="col-md-3.5 pr-4">
+                        <a href="/menu/{{ restaurant.name }}">
+                            <div class="post">
+                                <img src="{{restaurant.image.url}}" alt="chapathi" width="330px" height="220px" />
+                                <h2 class="title"><a href="">{{ restaurant.name }}</a></h2>
+                                <h5><p class="post-text" >contact -{{ restaurant.phone}}</p></h5>
+                                <h5><p class="post-text">location -{{ restaurant.address }}</p></h5>
+                                <span><i class="far fa-grin-stars"> {{ restaurant.rating}} </i></span>
+                                <form action="{% url 'food:fav_add' restaurant.name %}" method="post" class="button">
+                                    {% csrf_token %}
+                                    <button type="submit">
+                                        <i class="far fa-heart"  type="submit" name="fav"></i>
+                                    </button>
+                                </form>
+                                <br>
+                            </div>
+                        </a>
+                    </div>
+            {% endfor %}
+
+
+
+            </div>
+     </div>	
+{% endblock %}

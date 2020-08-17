@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+
+{% block nav %}
+    {% if user.is_authenticated == 0 %}
+    <div>
+        <nav class="navbar navbar-light navbar-expand-md fixed-top bg-white navigation-clean">
+            <div class="container-fluid"><a class="navbar-brand" href="/home" style="font-family:'Carrois Gothic SC', sans-serif;font-size:36px;letter-spacing:5px;">Thindi</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                <div
+                    class="collapse navbar-collapse" id="navcol-1">
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="/contact" style="font-size:20px;">Contact Us</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="/login" style="font-size:20px;">Login</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="/register" style="font-size:20px;">signup</a></li>
+                    </ul>
+            	</div>
+    		</div>
+    	</nav>
+    </div>
+    {% else %}
+    <div>
+        <nav class="navbar navbar-light navbar-expand-md fixed-top bg-white navigation-clean">
+            <div class="container-fluid"><a class="navbar-brand" href="/" style="font-family:'Carrois Gothic SC', sans-serif;font-size:36px;letter-spacing:5px;">Thindi</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                <div
+                    class="collapse navbar-collapse" id="navcol-1">
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="/me" style="font-size:20px;">{{ request.user }}</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="/restaurants" style="font-size:20px;">Restaurants</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="/offers" style="font-size:20px;">Offers</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="/cart/checkout" style="font-size:20px;">
+                            <i class="fas fa-shopping-cart"></i></a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="/contact" style="font-size:20px;">Contact Us</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="/logout" style="font-size:20px;">Logout</a></li>
+                    </ul>
+            	</div>
+    		</div>
+    	</nav>
+    </div>
+    {% endif %}
+{% endblock %}
+
+
+{% block body %}
+<br><br><br>
+<div class="col">
+                <div style="padding:40px;">
+                    <h2 class="text-center" data-aos="fade" data-aos-duration="1000" style="font-family:Comfortaa, cursive;padding:0;padding-bottom:0;">Contact</h2>
+                    <hr data-aos="zoom-in" data-aos-duration="1000" style="background-color:#fc5b62;width:10%;margin-top:0;">
+                </div>
+                <div>
+                    <form>
+                        <input class="form-control form-control-lg" type="text" placeholder="What is your Name?" autocomplete="off">
+                        <input class="form-control form-control-lg" type="email" multiple="" placeholder="your email-id? abc@email.com"
+                            autocomplete="off">
+                        <input class="form-control form-control-lg" type="" placeholder="+91 8123453788" autocomplete="off">
+                        <textarea class="form-control-lg" rows="5" placeholder="Brief your requirment." autocomplete="off" style="width:100%;"></textarea>
+                        <button class="btn btn-success" style="float: right;">send</button>
+                    </form>
+                    <br><br><br>
+                </div>
+                
+            </div>
+    </div> 
+{% endblock %}
+
+
+
+
+
+
+
+
+
+

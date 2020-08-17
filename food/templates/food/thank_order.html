@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}
+Thank you
+{% endblock %}
+{% block body %}
+    <div class="container">
+    <br><br><br><br>
+<h1>Thank you</h1><br><br>
+<p>Your order has been successfully completed. Your order number is
+<strong>{{ order.Oid }}</strong>.</p>
+    <br><br><br><br>
+        <strong><p>In order to confirm your order make the payment <a href="{% url 'food:pay' order.Oid  %}">here</a></p></strong>
+    <br><br><br><br>
+    </div>
+{% endblock %}

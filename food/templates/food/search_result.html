@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+
+    <script type="text/javascript">
+
+    $(document).ready(function () {
+        // Handler for .ready() called.
+        $('html, body').animate({
+            scrollTop: $('#scroll').offset().top
+        }, 'slow');
+    });
+    </script>
+
+    <script>
+    function scrollWin() {
+      window.scrollTo(0, 500);
+    }
+    </script>
+{% endblock %}
+
+{% block body %}
+
+    <div class="box">
+        <h1>Hungry ? </h1>
+        <h4>Order food Online !</h4>
+        <h4>Explore the best Restaurants in Your City</h4>
+        <div class="arrow bounce">
+            <i id="scroll_down" class="fas fa-arrow-down" onclick="scrollWin()"></i>
+        </div>
+
+    </div>
+
+
+    <form class="search-bar" method="GET" action="{% url 'food:search' %}">
+
+        <input class = "bar" type="text" name='q' placeholder="Enter restaurant name" value="{{ request.GET.q }}">
+        <button class="search-btn" type="submit" ><i class="fa fa-search" aria-hidden="true"></i></button>
+    </form>
+
+    <div class="content container" id="scroll">
+            <h3>Search Result </h3>
+            <hr>
+            <br><br>
+            {% if queryset_list %}
+            <div class="row" >
+            {% for restaurant in queryset_list %}
+                    <div class="col-md-3.5 pr-4">
+                        <a href="/menu/{{ restaurant.name }}">
+                        <div class="post">
+                                <img src="{{restaurant.image.url}}" alt="chapathi" width="330px" height="220px" />
+                                <h2 class="title"><a href="">{{ restaurant.name }}</a></h2>
+                                <h5 class="post-text" >{{ restaurant.phone}}</h5>
+                                <h5 class="post-text">{{ restaurant.address }}</h5>
+                                <span><i class="fas fa-thumbs-up">  {{ restaurant.rating}} </i></span>
+                                <br>
+                            </div>
+                        </a>
+                        </div>
+                {% endfor %}
+            </div>
+            {% else %}
+                    <h3>No restaurants with that name found :(</h3>
+                    <br><br><br><br><br>
+            {% endif %}
+
+    </div>
+{% endblock %}

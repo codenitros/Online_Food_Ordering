@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+<br><br><br>
+    {% if messages %}
+            {% for message in messages %}
+                <div {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %} role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close" ><span aria-hidden="true"></span></button>
+                    <strong>{{ message }}</strong>
+                </div>
+            {% endfor %}
+    {% endif %}
+<div class="container">
+    <strong><h1>Profile</h1></strong>
+    <p style="sans-serif;font-size:36px;letter-spacing:1px;">Usename:   {{ user.username }}</p>
+    <p style="sans-serif;font-size:30px;letter-spacing:1px;">name: {{ user.first_name }}</p>
+    <p style="sans-serif;font-size:25px;letter-spacing:1px;">Email:	  {{user.email }}</p>
+    <hr>
+    <strong><p>Favourites: </p></strong>
+    {% if fav_res %}
+        {% for restaurant in fav_res %}
+            <p style="sans-serif;font-size:25px;letter-spacing:1px;">{{restaurant.res_name }}</p>
+        {% endfor %}
+    {% else %}
+        <p style="sans-serif;font-size:25px;letter-spacing:1px;">.............No favourites</p>
+    {% endif %}
+    <hr>
+    <strong><p>Previous orders: </p></strong>
+    {% if orders %}
+        {% for order in orders %}
+            <p style="sans-serif;font-size:25px;letter-spacing:1px;">{{order.product.recipe_name }} from {{ order.product.restaurant_name }} for RS - {{order.product.recipe_price }}  </p>
+        {% endfor %}
+    {% else %}
+        <p style="sans-serif;font-size:25px;letter-spacing:1px;">.............No previous orders</p>
+    {% endif %}
+</div>
+{% endblock %}
+
+
+
+

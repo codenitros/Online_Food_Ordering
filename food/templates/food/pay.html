@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <div class="container">
+<br><br><br><br>
+    <form action="." method="post">
+        <strong><p>Pay Via</p></strong>
+        <br>
+        {%   csrf_token %}
+        <input type="radio" name="pay" value="Debit Card" required="True" >Debit Card
+         <br>
+        <br>
+        <input type="radio" name="pay" value="Net Banking">Net Banking
+        <br>
+        <br>
+        <input type="radio" name="pay" value="UPI">UPI
+        <br>
+        <br>
+        <input type="radio" name="pay" value="amazon pay">Amazon Pay
+        <br><br>
+        <p><input class="btn btn-success" type="submit" value="Pay ₹ {{ total }}"></p>
+    </form>
+    <p><a href="/home"> <button class="btn btn-dark">cancel and go to home</button></a> </p>
+        </div>
+    <br><br><br><br>
+{%  endblock %}

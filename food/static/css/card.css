@@ -1,0 +1,47 @@
+.post {
+    margin-bottom: 70px;
+    padding: 10px;
+    box-shadow: 0px 0px 20px 1px rgba(0,0,0,0.2);
+    background-color:#fff;
+    overflow: hidden;
+
+}
+.post:hover{
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    cursor: pointer;
+}
+.post img{
+    transition: transform 2s;
+}
+.post-text{
+    font-size: 14px;
+    text-align: justify;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    overflow: hidden;
+    max-height: 11.8em;
+    line-height: 1.8em;
+}
+.post h2{
+    margin-top: 10px;
+    font-size: 25px;
+    color: #007bff;
+}
+
+.post h2 a{
+    text-decoration: none;
+}
+.post h2 a:hover{
+    text-decoration: none;
+}
+.post img{
+    width: 280px;
+    height:180px;
+}
+
+.post:hover img{
+    -ms-transform: scale(1.1); /* IE 9 */
+    -webkit-transform: scale(1.11); /* Safari 3-8 */
+    transform: scale(1.11); 
+    overflow: hidden;
+}

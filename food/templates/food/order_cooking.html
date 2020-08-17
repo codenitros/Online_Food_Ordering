@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}
+Thank you We have received your payment
+{% endblock %}
+{% block body %}
+    <div class="container">
+    <br><br><br><br>
+<h1>Thank you We have received your payment</h1><br><br>
+<p>Your order is being cooked in the kitchen</p>
+    <br><br><br><br>
+    <strong><p>Delivered by :</p></strong>
+        <p>Delivery number -{{ delivery.Delivery_no }}</p>
+        <p>Delivery Person -{{ delivery.Dname }}</p>
+        <p>Contact Details -{{ delivery.contact }}</p>
+        <p>Rating          -{{ delivery.Drating }}</p>
+    <br><br><br><br>
+    </div>
+{% endblock %}

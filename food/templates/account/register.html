@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Create an account{% endblock %}
+{% block nav %}
+    <div>
+        <nav class="navbar navbar-light navbar-expand-md fixed-top bg-white navigation-clean">
+            <div class="container-fluid"><a class="navbar-brand" href="/home" style="font-family:'Carrois Gothic SC', sans-serif;font-size:36px;letter-spacing:5px;">Thindi</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                <div
+                    class="collapse navbar-collapse" id="navcol-1">
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="/contact" style="font-size:20px;">Contact Us</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="/login" style="font-size:20px;">Login</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="/register" style="font-size:20px;">signup</a></li>
+                    </ul>
+            	</div>
+    		</div>
+    	</nav>
+    </div>
+{% endblock %}
+{% block body %}
+<h1>Create an account</h1>
+<p>Please, sign up using the following form:</p>
+<form action="." method="post">
+{{ user_form.as_p }}
+{% csrf_token %}
+<p><input type="submit" value="Create my account"></p>
+</form>
+{% endblock %}
